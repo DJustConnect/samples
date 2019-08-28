@@ -13,7 +13,7 @@ namespace Ilvo.DataHub.Samples.Consumer
         public Uri Url { get; set; }
 
         [Option('v', "verb", Required = true, HelpText = "HTTP verb")]
-        public HttpMethod Verb { get; set; }
+        public string Verb { get; set; }
 
         [Option('c', "certificate path", Required = true, HelpText = "path to the client certificate")]
         public string CertificatePath { get; set; }

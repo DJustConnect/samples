@@ -33,7 +33,7 @@ namespace Ilvo.DataHub.Samples.Consumer
                 if (!string.IsNullOrEmpty(opts.Purpose))
                     client.DefaultRequestHeaders.Add("purpose", opts.Purpose);
 
-                var request = new HttpRequestMessage(opts.Verb, opts.Url);
+                var request = new HttpRequestMessage(new HttpMethod(opts.Verb), opts.Url);
                 var response = await client.SendAsync(request);
 
                 Console.Write(JsonConvert.SerializeObject(response));
