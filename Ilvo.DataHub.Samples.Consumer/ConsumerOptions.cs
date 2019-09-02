@@ -18,6 +18,9 @@ namespace Ilvo.DataHub.Samples.Consumer
         [Option('c', "certificate path", Required = true, HelpText = "path to the client certificate")]
         public string CertificatePath { get; set; }
 
+        [Option('f', "certificate password", Required = true, HelpText = "password of the certificate")]
+        public string CertificatePassword { get; set; }
+
         [Option('s', "subscriptionkey", Required = true, HelpText = "Subscriptionkey")]
         public string SubscriptionKey { get; set; }
 
