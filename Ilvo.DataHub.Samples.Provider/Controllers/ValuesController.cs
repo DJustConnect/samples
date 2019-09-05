@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ilvo.DataHub.Samples.Provider.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
     /*
      * Adding and configuring the OpenAPI spec and Swagger UI: https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.2&tabs=visual-studio
-     * Configuring IISExpress to require client certificates: https://serverfault.com/a/900492
+     * Configuring IISExpress to require client certificates: https://serverfault.com/a/900492. The choice to require or only allow client certificates to be received
+     *  depends on your choice and what your host of choice offers.
      * Use the self-signed-client-cert.pfx; install into the CurrentUser/My and LocalMachine/CA stores. The "do not trust" certificate can be used to test accessing
      *  the application with a non-trusted client certificate; install it ONLY into the CurrentUser/My store.
      *  - CurrentUser/My: this will make the certificate available for selection in your browser
      *  - LocalMachine/CA: this explicitly trusts the certificate on your local machine, so IISExpress sees it as valid
      */
-
+    [RequireClientCertificate]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
