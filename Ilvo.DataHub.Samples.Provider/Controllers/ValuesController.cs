@@ -8,6 +8,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
     /*
      * Adding and configuring the OpenAPI spec and Swagger UI: https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.2&tabs=visual-studio
+     * Configuring IISExpress to require client certificates: https://serverfault.com/a/900492
      */
 
     [Route("api/[controller]")]
