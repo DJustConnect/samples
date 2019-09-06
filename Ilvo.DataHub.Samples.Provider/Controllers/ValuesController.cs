@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ilvo.DataHub.Samples.Provider.Filters;
+﻿using Ilvo.DataHub.Samples.Provider.Filters;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
@@ -15,6 +12,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
      *  the application with a non-trusted client certificate; install it ONLY into the CurrentUser/My store.
      *  - CurrentUser/My: this will make the certificate available for selection in your browser
      *  - LocalMachine/CA: this explicitly trusts the certificate on your local machine, so IISExpress sees it as valid
+     * More info on configuring Mutual SSL on Azure App Services: https://docs.microsoft.com/en-us/azure/app-service/app-service-web-configure-tls-mutual-auth
      */
     [RequireClientCertificate]
     [Route("api/[controller]")]

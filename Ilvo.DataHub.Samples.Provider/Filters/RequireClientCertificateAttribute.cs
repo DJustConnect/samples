@@ -24,11 +24,13 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
             else
             {
                 Trace.WriteLine(certificate.SubjectName.Name, "RequireClientCertificate");
-                
+
+                // Note: IIS Express checks validity of the certificate for us. We can expect a trusted, valid certificate here.
+
                 // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
                 if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
                     StringComparison.OrdinalIgnoreCase))
-                    context.Result = new ForbidResult();
+                    context.Result = new StatusCodeResult(403);
 
             }
 #else
@@ -45,10 +47,14 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
                 using (var certificate = new X509Certificate2(data)) {
                     Trace.WriteLine(certificate.SubjectName.Name, "RequireClientCertificate");
 
-                // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
-                if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
-                    StringComparison.OrdinalIgnoreCase))
-                    context.Result = new ForbidResult();
+                    // Check certificate validity (Azure Web Apps only forwards the certificate, without any checks)
+                    if (!certificate.Verify())
+                        context.Result = new StatusCodeResult(403);
+
+                    // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
+                    else if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
+                        StringComparison.OrdinalIgnoreCase))
+                        context.Result = new StatusCodeResult(403);
                 }
             }
 #endif
