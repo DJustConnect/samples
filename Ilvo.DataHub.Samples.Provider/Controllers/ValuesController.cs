@@ -1,6 +1,7 @@
 ﻿using Ilvo.DataHub.Samples.Provider.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
@@ -17,6 +18,8 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
     [RequireClientCertificate]
     [Route("api/[controller]")]
     [ApiController]
+    [ProducesResponseType(typeof(void), (int)HttpStatusCode.Unauthorized)]
+    [ProducesResponseType(typeof(void), (int)HttpStatusCode.Forbidden)]
     public class ValuesController : ControllerBase
     {
         /// <summary>
@@ -24,6 +27,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
@@ -35,6 +39,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public ActionResult<string> Get(int id)
         {
             return "value";
@@ -45,6 +50,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// </summary>
         /// <param name="value"></param>
         [HttpPost]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public void Post([FromBody] string value)
         {
         }
@@ -55,6 +61,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <param name="id"></param>
         /// <param name="value"></param>
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public void Put(int id, [FromBody] string value)
         {
         }
@@ -64,6 +71,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
         public void Delete(int id)
         {
         }
