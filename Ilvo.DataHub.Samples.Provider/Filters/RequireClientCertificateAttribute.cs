@@ -48,11 +48,16 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
                     Trace.WriteLine(certificate.SubjectName.Name, "RequireClientCertificate");
 
                     // Check certificate validity (Azure Web Apps only forwards the certificate, without any checks)
-                    if (!certificate.Verify())
-                        context.Result = new StatusCodeResult(403);
-
+                    // Note: Azure app services do not allow adding custom certificates to the LocalMachine/CA store when not using an 
+                    //  App Service Environment (higher pricing, isolated environment). As a result, our self-signed certificate cannot be 
+                    //  validated using the default policy (using a simple Verify, as below).
+                    
+                    //if (!certificate.Verify())
+                    //    context.Result = new StatusCodeResult(403);
+                    //else
+                    
                     // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
-                    else if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
+                    if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
                         StringComparison.OrdinalIgnoreCase))
                         context.Result = new StatusCodeResult(403);
                 }
