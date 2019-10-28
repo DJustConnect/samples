@@ -9,7 +9,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [ApiExplorerSettings(IgnoreApi = true)] //Hides the API in the Swagger UI
+    //[ApiExplorerSettings(IgnoreApi = true)] //Hides the API in the Swagger UI
     public class FarmIdController : ControllerBase
     {
         private readonly Dictionary<string, IEnumerable<string>> _resources;
@@ -19,10 +19,10 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
             var baseUrl = $"{context.HttpContext.Request.Scheme}://{context.HttpContext.Request.Host}";
             _resources = new Dictionary<string, IEnumerable<string>>
             {
-                {$"{baseUrl}/values", new []{ "100", "101", "102" }},
-                {$"{baseUrl}/number", new []{ "100", "103", "104", "105" }},
-                {$"{baseUrl}/number/pi", new []{ "105", "106" }},
-                {$"{baseUrl}/word", new []{ "102", "104", "105", "106" }}
+                {$"{baseUrl}/api/values", new []{ "100", "101", "102" }},
+                {$"{baseUrl}/api/number", new []{ "100", "103", "104", "105" }},
+                {$"{baseUrl}/api/number/pi", new []{ "105", "106" }},
+                {$"{baseUrl}/api/word", new []{ "102", "104", "105", "106" }}
             };
         }
 
