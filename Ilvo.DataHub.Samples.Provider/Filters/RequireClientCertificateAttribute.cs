@@ -10,6 +10,7 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
     public class RequireClientCertificateAttribute : Attribute, IAuthorizationFilter
     {
         private const string SelfSignedCertThumbprint = "5297bc7b3c0bcb2905cf4158e50e2b65162edc1b";
+        private const string DjustConnectCertThumbprint = "a7dfeed59f1e1c44241a0f93a099eb0201a9e3d0";
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -28,8 +29,7 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
                 // Note: IIS Express checks validity of the certificate for us. We can expect a trusted, valid certificate here.
 
                 // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
-                if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
-                    StringComparison.OrdinalIgnoreCase))
+                if (!IsValid(certificate))
                     context.Result = new StatusCodeResult(403);
 
             }
@@ -57,12 +57,18 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
                     //else
                     
                     // Authorization (Note that without explicit authorization on application level, ANY valid client certificate is granted access)
-                    if (!string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint,
-                        StringComparison.OrdinalIgnoreCase))
+                    if (!IsValid(certificate))
                         context.Result = new StatusCodeResult(403);
                 }
             }
 #endif
+        }
+
+        private static bool IsValid(X509Certificate2 certificate)
+        {
+            return string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(certificate.Thumbprint, DjustConnectCertThumbprint, StringComparison.OrdinalIgnoreCase);
+
         }
     }
 }
