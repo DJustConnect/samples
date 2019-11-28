@@ -22,7 +22,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> GetWords()
         {
             return new string[] { "word1", "word2", "word3", "word4" };
         }

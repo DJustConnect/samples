@@ -28,7 +28,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> GetValues()
         {
             return new string[] { "value1", "value2" };
         }
@@ -40,7 +40,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public ActionResult<string> Get(int id)
+        public ActionResult<string> GetValue(int id)
         {
             return "value";
         }
@@ -51,7 +51,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <param name="value"></param>
         [HttpPost]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-        public void Post([FromBody] string value)
+        public void PostValue([FromBody] string value)
         {
         }
 
@@ -62,7 +62,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <param name="value"></param>
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-        public void Put(int id, [FromBody] string value)
+        public void PutValue(int id, [FromBody] string value)
         {
         }
 
@@ -72,7 +72,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <param name="id"></param>
         [HttpDelete("{id}")]
         [ProducesResponseType(typeof(void), (int)HttpStatusCode.OK)]
-        public void Delete(int id)
+        public void DeleteValue(int id)
         {
         }
     }

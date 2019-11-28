@@ -19,7 +19,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<int>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<int>> Get()
+        public ActionResult<IEnumerable<int>> GetNumbers()
         {
             return new int[] { 1, 12, 35 };
         }
