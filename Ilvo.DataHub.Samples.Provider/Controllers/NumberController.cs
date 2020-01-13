@@ -25,6 +25,18 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         }
 
         /// <summary>
+        /// Returns certain value.
+        /// </summary>
+        /// <param name="farmId"></param>
+        /// <returns></returns>
+        [HttpGet("{farmId}")]
+        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
+        public ActionResult<int> Get(string farmId)
+        {
+            return 1;
+        }
+
+        /// <summary>
         /// Returns pi.
         /// </summary>
         /// <returns></returns>

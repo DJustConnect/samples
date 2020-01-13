@@ -26,5 +26,17 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         {
             return new string[] { "word1", "word2", "word3", "word4" };
         }
+
+        /// <summary>
+        /// Returns certain the value.
+        /// </summary>
+        /// <param name="farmId"></param>
+        /// <returns></returns>
+        [HttpGet("{farmId}")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public ActionResult<string> Get(string farmId)
+        {
+            return  "word1";
+        }
     }
 }

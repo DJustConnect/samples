@@ -44,6 +44,18 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         {
             return "value";
         }
+        
+        /// <summary>
+        /// Returns a specific value.
+        /// </summary>
+        /// <param name="farmId"></param>
+        /// <returns></returns>
+        [HttpGet("{farmId}")]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public ActionResult<string> Get(string farmId)
+        {
+            return "value";
+        }
 
         /// <summary>
         /// Adds a new value.
