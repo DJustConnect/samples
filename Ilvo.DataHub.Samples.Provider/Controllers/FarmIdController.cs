@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ilvo.DataHub.Samples.Provider.Models;
 using Microsoft.AspNetCore.Http;
@@ -29,20 +30,19 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         [HttpPost]
         public IEnumerable<string> GetFarmIds([FromBody] FarmIdRequest request)
         {
-            //Check if the resource exists. Otherwise return an empty array
-            var doesResourceExist = _resources.ContainsKey(request.ResourceUrl);
-            if (!doesResourceExist)
-                return new string[0];
+            var defaultValue = default(KeyValuePair<string, IEnumerable<string>>);
 
-            //Get the farm IDs for the resource
-            var resource = _resources[request.ResourceUrl];
+            //Check if the resource exists. Otherwise return an empty array
+            var resource = _resources.FirstOrDefault(u => request.ResourceUrl.Contains(u.Key, StringComparison.OrdinalIgnoreCase));
+            if (resource.Equals(defaultValue))
+                return new string[0];
 
             //If all the resources are requested return them all
             if (request.All)
-                return resource;
+                return resource.Value;
 
             //Else check what ids are present in both the arrays and return those. If there are none, return an empty array
-            return resource.Intersect(request.FarmIds);
+            return resource.Value.Intersect(request.FarmIds);
         }
     }
 }
