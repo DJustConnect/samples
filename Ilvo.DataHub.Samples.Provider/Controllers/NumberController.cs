@@ -19,21 +19,11 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<int>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<int>> GetNumbers()
+        public ActionResult<IEnumerable<int>> GetNumbers([FromQuery] string farmId)
         {
-            return new int[] { 1, 12, 35 };
-        }
-
-        /// <summary>
-        /// Returns certain value.
-        /// </summary>
-        /// <param name="farmId"></param>
-        /// <returns></returns>
-        [HttpGet("{farmId}")]
-        [ProducesResponseType(typeof(int), (int)HttpStatusCode.OK)]
-        public ActionResult<int> Get(string farmId)
-        {
-            return 1;
+            if (string.IsNullOrEmpty(farmId))
+                return new int[] { 1, 12, 35 };
+            return new int[] { 1 };
         }
 
         /// <summary>

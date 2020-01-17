@@ -28,33 +28,11 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<string>> GetValues()
+        public ActionResult<IEnumerable<string>> GetValues([FromQuery] string farmId)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        /// <summary>
-        /// Returns a specific value.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}")]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public ActionResult<string> GetValue(int id)
-        {
-            return "value";
-        }
-        
-        /// <summary>
-        /// Returns a specific value.
-        /// </summary>
-        /// <param name="farmId"></param>
-        /// <returns></returns>
-        [HttpGet("{farmId}")]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public ActionResult<string> Get(string farmId)
-        {
-            return "value";
+            if (string.IsNullOrEmpty(farmId))
+                return new string[] { "value1", "value2" };
+            return new string[] { "value1" };
         }
 
         /// <summary>

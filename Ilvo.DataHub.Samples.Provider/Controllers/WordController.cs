@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net;
-using System.Threading.Tasks;
 using Ilvo.DataHub.Samples.Provider.Filters;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
@@ -22,21 +18,11 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<string>> GetWords()
+        public ActionResult<IEnumerable<string>> GetWords([FromQuery] string farmId)
         {
-            return new string[] { "word1", "word2", "word3", "word4" };
-        }
-
-        /// <summary>
-        /// Returns certain the value.
-        /// </summary>
-        /// <param name="farmId"></param>
-        /// <returns></returns>
-        [HttpGet("{farmId}")]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
-        public ActionResult<string> Get(string farmId)
-        {
-            return  "word1";
+            if (string.IsNullOrEmpty(farmId))
+                return new string[] { "word1", "word2", "word3", "word4" };
+            return new string[] { "word1" };
         }
     }
 }
