@@ -23,8 +23,5 @@ namespace Ilvo.DataHub.Samples.Consumer
 
         [Option('s', "subscriptionkey", Required = true, HelpText = "Subscriptionkey")]
         public string SubscriptionKey { get; set; }
-
-        [Option('p', "purpose", Required = false, HelpText = "purpose")]
-        public string Purpose { get; set; }
     }
 }

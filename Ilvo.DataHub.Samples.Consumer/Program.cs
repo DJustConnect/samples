@@ -1,9 +1,7 @@
 ﻿using CommandLine;
 using Newtonsoft.Json;
 using System;
-using System.IO;
 using System.Net.Http;
-using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -15,7 +13,7 @@ namespace Ilvo.DataHub.Samples.Consumer
         {
             return await Parser.Default.ParseArguments<ConsumerOptions>(args)
                     .MapResult(
-                        (opts) => TryCallAPI(opts),
+                        TryCallAPI,
                         errs => Task.FromResult(-1));
         }
 
@@ -43,8 +41,6 @@ namespace Ilvo.DataHub.Samples.Consumer
                 using (var client = new HttpClient(clientHandler))
                 {
                     client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", opts.SubscriptionKey);
-                    if (!string.IsNullOrEmpty(opts.Purpose))
-                        client.DefaultRequestHeaders.Add("purpose", opts.Purpose);
 
                     var request = new HttpRequestMessage(new HttpMethod(opts.Verb), opts.Url);
                     var response = await client.SendAsync(request);
