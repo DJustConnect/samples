@@ -30,8 +30,8 @@ namespace Ilvo.DataHub.Samples.Provider
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "ILVO DataHub Sample Provider API",
-                    Description = "Sample of a Provider API, consumed by the ILVO DataHub.",
+                    Title = "DJustConnect Sample API",
+                    Description = "Sample of a Provider API, consumed by DJustConnect.",
                     Version = "v1"
                     //TODO: Add more settings such as Terms and Conditions, Licensing details, etc.
                 });
