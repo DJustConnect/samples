@@ -16,9 +16,9 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         /// Returns all the values.
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("{farmId}")]
         [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.OK)]
-        public ActionResult<IEnumerable<string>> GetWords([FromQuery] string farmId)
+        public ActionResult<IEnumerable<string>> GetWords([FromRoute] string farmId)
         {
             if (string.IsNullOrEmpty(farmId))
                 return new string[] { "word1", "word2", "word3", "word4" };
