@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
+using Ilvo.DataHub.Samples.Provider.Cache;
 
 namespace Ilvo.DataHub.Samples.Provider
 {
@@ -22,6 +23,7 @@ namespace Ilvo.DataHub.Samples.Provider
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<FarmIdCache>();
             services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
