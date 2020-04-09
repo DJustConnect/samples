@@ -32,7 +32,9 @@ namespace Ilvo.DataHub.Samples.Provider.Cache
                 {$"{_baseUrl}/api/values", new []{ "100", "101", "102" }},
                 {$"{_baseUrl}/api/number", new []{ "100", "103", "104", "105" }},
                 {$"{_baseUrl}/api/number/pi", new []{ "105", "106" }},
-                {$"{_baseUrl}/api/word", new []{ "100", "102", "104", "105", "106" }}
+                {$"{_baseUrl}/api/word", new []{ "100", "102", "104", "105", "106" }},
+                {$"{_baseUrl}/api/farmData/simple", new []{ "100", "200", "300", "400", "500" }},
+                {$"{_baseUrl}/api/farmData/complex", new []{ "100", "200", "300", "400", "500", "600", "700", "1000" }}
             };
         }
     }
