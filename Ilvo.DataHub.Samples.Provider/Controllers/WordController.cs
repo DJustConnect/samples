@@ -13,7 +13,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
     public class WordController : ControllerBase
     {
         /// <summary>
-        /// Returns all the values.
+        /// Returns a word.
         /// </summary>
         /// <returns></returns>
         [HttpGet("{farmId}")]

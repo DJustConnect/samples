@@ -23,7 +23,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
     public class ValuesController : ControllerBase
     {
         /// <summary>
-        /// Returns all the values.
+        /// Returns values.
         /// </summary>
         /// <returns></returns>
         [HttpGet]

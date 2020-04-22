@@ -14,7 +14,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
     public class NumberController : ControllerBase
     {
         /// <summary>
-        /// Returns all the values.
+        /// Returns a number.
         /// </summary>
         /// <returns></returns>
         [HttpGet]
