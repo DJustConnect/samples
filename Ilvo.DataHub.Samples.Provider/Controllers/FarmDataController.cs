@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ilvo.DataHub.Samples.Provider.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
@@ -10,33 +11,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         [HttpGet("simple")]
         public ActionResult<IEnumerable<SimpleFarmData>> GetSimpleFarmData()
         {
-            return new List<SimpleFarmData>
-            {
-                new SimpleFarmData
-                {
-                    FarmId = "100",
-                    Data = "Data for farm 100"
-                },
-                new SimpleFarmData
-                {
-                    FarmId = "200",
-                    Data = "Data for farm 200"
-                },
-                new SimpleFarmData
-                {
-                    FarmId = "300",
-                    Data = "Data for farm 300"
-                },
-                new SimpleFarmData
-                {
-                    FarmId = "400",
-                    Data = "Data for farm 400"
-                },                new SimpleFarmData
-                {
-                    FarmId = "500",
-                    Data = "Data for farm 500"
-                }
-            };
+            return Ok(SimpleFarmData.GetSomeData());
         }
 
         [HttpGet("complex")]
@@ -206,12 +181,6 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
                 }
             };
         }
-    }
-
-    public class SimpleFarmData
-    {
-        public string FarmId { get; set; }
-        public string Data { get; set; }
     }
 
     public class ComplexFarmData
