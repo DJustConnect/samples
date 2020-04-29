@@ -1,7 +1,9 @@
 ﻿using CommandLine;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
@@ -25,7 +27,7 @@ namespace Ilvo.DataHub.Samples.Consumer
             }
             catch (Exception e)
             {
-                Console.Write(JsonConvert.SerializeObject(e));
+                Console.Write(e);
                 return -1;
             }
         }
@@ -40,12 +42,14 @@ namespace Ilvo.DataHub.Samples.Consumer
 
                 using (var client = new HttpClient(clientHandler))
                 {
-                    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", opts.SubscriptionKey);
+                    client.DefaultRequestHeaders.Add("DjustConnect-Subscription-Key", opts.SubscriptionKey);
 
                     var request = new HttpRequestMessage(new HttpMethod(opts.Verb), opts.Url);
                     var response = await client.SendAsync(request);
 
-                    Console.Write(JsonConvert.SerializeObject(await response.Content.ReadAsStringAsync()));
+                    var responseAsString = await response.Content.ReadAsStringAsync();
+                    Console.Write(string.Join("\r\n", response.Headers.Select(h=> $"{h.Key}: {string.Join(", ", h.Value)}")));
+                    Console.Write(JsonConvert.SerializeObject(JsonConvert.DeserializeObject(responseAsString), Formatting.Indented));
                     return response.IsSuccessStatusCode ? 0 : -1;
                 }
             }
