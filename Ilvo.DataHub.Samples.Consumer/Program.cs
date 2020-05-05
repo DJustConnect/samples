@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
+using Ilvo.DataHub.Samples.Consumer.Models;
 using Newtonsoft.Json.Converters;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Ilvo.DataHub.Samples.Consumer
 {
@@ -88,11 +90,13 @@ namespace Ilvo.DataHub.Samples.Consumer
 
         private static async Task<IEnumerable<DarStatusSummary>> GetDarsSummary(HttpClient client, StatusOptions opts)
         {
-            int pages = 0, currentPage = 0;
+            int pages = 0, currentPage = 0, totalAmount = 0;
             var result = new List<DarStatusSummary>();
             do
             {
-                var response = await client.GetAsync(new Uri($"https://partnerapi.djustconnect.cegeka.com/api/DarStatus?PageNumber={currentPage+1}&ResourceIdFilter={opts.ResourceId}&FarmNumberFilter={opts.Kbo}"));
+                var parameters = GetParameters(opts);
+                var url = QueryHelpers.AddQueryString("https://partnerapi.djustconnect.cegeka.com/api/DarStatus", parameters);
+                var response = await client.GetAsync(url);
                 var responseAsString = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
@@ -103,60 +107,31 @@ namespace Ilvo.DataHub.Samples.Consumer
 
                 pages = Convert.ToInt32(response.Headers.GetValues("X-Pages").FirstOrDefault());
                 currentPage = Convert.ToInt32(response.Headers.GetValues("X-PageNumber").FirstOrDefault());
+                totalAmount = Convert.ToInt32(response.Headers.GetValues("X-TotalCount").FirstOrDefault());
                 var pageSize = Convert.ToInt32(response.Headers.GetValues("X-PageSize").FirstOrDefault());
-                var totalAmount = Convert.ToInt32(response.Headers.GetValues("X-TotalCount").FirstOrDefault());
                 var data = JsonConvert.DeserializeObject<IEnumerable<DarStatusSummary>>(responseAsString);
+
                 result.AddRange(data);
                 Console.WriteLine($"Got data for page {currentPage}/{pages}");
-            } while (currentPage > pages);
+            } while (currentPage > pages && totalAmount > 0);
 
             return result;
         }
 
-        public class DarStatusSummary
+        private static Dictionary<string, string> GetParameters(StatusOptions opts)
         {
-            public Guid PartnerId { get; set; }
+            var parameters = new Dictionary<string, string>();
 
-            public string PartnerName { get; set; }
+            if (opts.DarStatus.HasValue)
+                parameters.Add("DarStatusFilter", opts.DarStatus.ToString());
+            if (opts.ResourceStatus.HasValue)
+                parameters.Add("ResourceStatusFilter", opts.ResourceStatus.ToString());
+            if (opts.ResourceId.HasValue)
+                parameters.Add("ResourceIdFilter", opts.ResourceId.ToString());
+            if (!string.IsNullOrEmpty(opts.Kbo))
+                parameters.Add("FarmNumberFilter", opts.Kbo);
 
-            public string FarmNumber { get; set; }
-
-            public Guid ResourceId { get; set; }
-
-            public string ResourceName { get; set; }
-
-            [JsonConverter(typeof(StringEnumConverter))]
-            public FarmStatus FarmStatus { get; set; }
-
-            [JsonConverter(typeof(StringEnumConverter))]
-            public AccessRequestStatus ResourceStatus { get; set; }
-
-            [JsonConverter(typeof(StringEnumConverter))]
-            public DarStatus DarStatus { get; set; }
-        }
-
-        public enum FarmStatus
-        {
-            HasUser = 0,
-            NotFound = 1,
-            HasNoUser = 2
-        }
-
-        public enum AccessRequestStatus
-        {
-            Pending,
-            Approved,
-            Rejected
-        }
-
-        public enum DarStatus
-        {
-            Pending = 0,
-            Approved = 1,
-            Rejected = 2,
-            NotApplicable = 3,
-            NoMapping = 4,
-            NoData = 5
+            return parameters;
         }
     }
 }
