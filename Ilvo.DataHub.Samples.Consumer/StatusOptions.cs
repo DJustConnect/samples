@@ -13,10 +13,10 @@ namespace Ilvo.DataHub.Samples.Consumer
         [Option('k', "farm kbo number", Required = false, HelpText = "kbo number of the farm")]
         public string Kbo { get; set; }
 
-        [Option('a', "resource access request status", Required = false, HelpText = "kbo number of the farm")]
+        [Option('a', "resource access request status", Required = false, HelpText = "status of the resource access request")]
         public AccessRequestStatus? ResourceStatus { get; set; }
 
-        [Option('d', "data access request status", Required = false, HelpText = "kbo number of the farm")]
+        [Option('d', "data access request status", Required = false, HelpText = "status of the data access request")]
         public DarStatus? DarStatus { get; set; }
 
         [Option('c', "consumer certificate path", Required = true, HelpText = "path to the consumer client certificate")]
