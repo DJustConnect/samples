@@ -4,7 +4,7 @@ using Ilvo.DataHub.Samples.Consumer.Models;
 
 namespace Ilvo.DataHub.Samples.Consumer
 {
-    [Verb("status", HelpText = "gets the status of data access requests by resourceId and farm kbo number")]
+    [Verb("status", HelpText = "gets the status of data access requests")]
     public class StatusOptions
     {
         [Option('r', "resourceId", Required = false, HelpText = "identifier of the api resource")]
