@@ -8,6 +8,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using Ilvo.DataHub.Samples.Provider.Cache;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Ilvo.DataHub.Samples.Provider
 {
@@ -23,6 +24,19 @@ namespace Ilvo.DataHub.Samples.Provider
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://ilvodatahub.eu.auth0.com/authorize";
+                options.Audience = "https://ilvodatahub.eu.auth0.com/api/v2/";
+                options.TokenValidationParameters.ValidateLifetime = true;
+                options.TokenValidationParameters.ValidIssuer = "https://ilvodatahub.eu.auth0.com/";
+                options.TokenValidationParameters.ClockSkew = TimeSpan.FromMinutes(5);
+            });
+
             services.AddSingleton<FarmIdCache>();
             services.AddHttpContextAccessor();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -68,6 +82,8 @@ namespace Ilvo.DataHub.Samples.Provider
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();
