@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Ilvo.DataHub.Samples.Provider.Filters;
 using Ilvo.DataHub.Samples.Provider.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
+    [RequireClientCertificate]
     [Route("api/[controller]")]
     [ApiController]
     public class FarmDataController : ControllerBase
