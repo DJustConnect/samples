@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Ilvo.DataHub.Samples.Provider.Cache;
 using Ilvo.DataHub.Samples.Provider.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
@@ -20,6 +21,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IEnumerable<string> GetFarmIds([FromBody] FarmIdRequest request)
         {
             var defaultValue = default(KeyValuePair<string, IEnumerable<string>>);
