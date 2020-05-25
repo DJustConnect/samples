@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using Ilvo.DataHub.Samples.Provider.Cache;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.OpenApi.Models;
 
 namespace Ilvo.DataHub.Samples.Provider
 {
@@ -39,12 +40,12 @@ namespace Ilvo.DataHub.Samples.Provider
 
             services.AddSingleton<FarmIdCache>();
             services.AddHttpContextAccessor();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc(options =>options.EnableEndpointRouting =false).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "DJustConnect Sample API",
                     Description = "Sample of a Provider API, consumed by DJustConnect.",
@@ -86,6 +87,7 @@ namespace Ilvo.DataHub.Samples.Provider
             app.UseAuthentication();
 
             app.UseHttpsRedirection();
+            
             app.UseMvc();
         }
     }
