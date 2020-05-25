@@ -20,9 +20,9 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
             _cache = cache;
         }
 
-        [HttpPost]
+        [HttpPost("authorized")]
         [Authorize]
-        public IEnumerable<string> GetFarmIds([FromBody] FarmIdRequest request)
+        public IEnumerable<string> GetFarmIdsAuthorized([FromBody] FarmIdRequest request)
         {
             var defaultValue = default(KeyValuePair<string, IEnumerable<string>>);
 
@@ -38,5 +38,13 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
             //Else check what ids are present in both the arrays and return those. If there are none, return an empty array
             return resource.Value.Intersect(request.FarmIds);
         }
+
+        [HttpPost()]
+        public IEnumerable<string> GetFarmIds([FromBody] FarmIdRequest request)
+        {
+            return GetFarmIdsAuthorized(request);
+        }
+
+
     }
 }
