@@ -1,0 +1,118 @@
+[
+  {
+    "regions": [
+      {
+        "name": "West-Vlaanderen",
+        "cities": [
+          {
+            "name": "Kortrijk",
+            "farmData": [
+              {
+                "name": "Farm 1",
+                "contactInfo": {
+                  "address": "Kortrijk 1",
+                  "farmId": "100"
+                }
+              },
+              {
+                "name": "Farm 2",
+                "contactInfo": {
+                  "address": "Kortrijk 2",
+                  "farmId": "200"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Waregem",
+            "farmData": [
+              {
+                "name": "Farm 3",
+                "contactInfo": {
+                  "address": "Waregem 1",
+                  "farmId": "300"
+                }
+              },
+              {
+                "name": "Farm 3",
+                "contactInfo": {
+                  "address": "Waregem 2",
+                  "farmId": "400"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Oost-Vlaanderen",
+        "cities": [
+          {
+            "name": "Gent",
+            "farmData": [
+              {
+                "name": "Farm 5",
+                "contactInfo": {
+                  "address": "Gent 1",
+                  "farmId": "500"
+                }
+              },
+              {
+                "name": "Farm 6",
+                "contactInfo": {
+                  "address": "Gent 2",
+                  "farmId": "600"
+                }
+              }
+            ]
+          },
+          {
+            "name": "Lokeren",
+            "farmData": [
+              {
+                "name": "Farm 7",
+                "contactInfo": {
+                  "address": "Lokeren 1",
+                  "farmId": "700"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Antwerpen",
+        "cities": [
+          {
+            "name": "Antwerpen",
+            "farmData": []
+          }
+        ]
+      },
+      {
+        "name": "Limburg",
+        "cities": [
+          {
+            "name": "Hasselt",
+            "farmData": [
+              {
+                "name": "Farm 9",
+                "contactInfo": {
+                  "address": "Hasselt 2",
+                  "farmId": null
+                }
+              },
+              {
+                "name": "Farm 10",
+                "contactInfo": {
+                  "address": "Hasselt 3",
+                  "farmId": "1000"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
