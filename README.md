@@ -47,7 +47,7 @@ Certificates added to the CurrentUser/My (Personal) store should be available fo
 
 The Azure App Service hosted Web API is configured to require client certificates. Azure App Service only offers limited options, but it is possible to exclude the OpenAPI spec’s URL, for example. Note that this is not required for registering your API in the Datahub.
 
-![alt text](https://github.com/DJustConnect/samples/Appservice.png "Azure App service setting")
+![alt text](https://github.com/DJustConnect/samples/blob/master/Appservice.png "Azure App service setting")
 
 The ValuesController inside the Sample Provider API was decorated with a custom AuthorizationFilter, in which the client certificates are verified and authorized.
 Azure App Service passes on the client certificate (in binary form) inside the X-ARR-ClientCert header.
