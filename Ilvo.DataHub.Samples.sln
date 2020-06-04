@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ilvo.DataHub.Samples.Consumer", "Ilvo.DataHub.Samples.Consumer\Ilvo.DataHub.Samples.Consumer.csproj", "{190B5376-DC95-4A0B-963C-8ED85DF40A0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilvo.DataHub.Samples.Provider", "Ilvo.DataHub.Samples.Provider\Ilvo.DataHub.Samples.Provider.csproj", "{FFFB4C06-CE49-4152-9EF0-083874CCC08B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ilvo.DataHub.Samples.Provider", "Ilvo.DataHub.Samples.Provider\Ilvo.DataHub.Samples.Provider.csproj", "{FFFB4C06-CE49-4152-9EF0-083874CCC08B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{98A01AD4-BD04-435B-9F87-71B978521E03}"
+	ProjectSection(SolutionItems) = preProject
+		Appservice.png = Appservice.png
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
