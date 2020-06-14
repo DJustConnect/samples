@@ -14,7 +14,7 @@ You can run it by opening CMD in the directory of the exe. Then run it with the 
 * -u the URL of the platform API that you want to call
 * -v the http method of the call
 * -c the path to the certificate file or the certificate filename used to call the platform
-* -f the certificate’s password
+* -p the certificate’s password
 * -s the subscription key that you received during registration
 
 #### Command
@@ -22,7 +22,7 @@ Ilvo.DataHub.Samples.Consumer.exe consume
 -u https://api-url
 -v "Get"
 -c "C:\Certificates\cert.pfx"
--f "certificate password"
+-p "certificate password"
 -s "c177c5740d434a9f8d7caef793dbd463"
 
 ## Provider Sample
