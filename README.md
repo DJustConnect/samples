@@ -41,8 +41,8 @@ Azure App Services provides hosting on a public CA-signed endpoint out of the bo
 In an actual production scenario you would create a CSR (Certificate Signing Request)
 and choose a public CA (Certificate Authority, e.g. GlobalSign, Thawte, Verisign, …) to get a public CA-signed certificate.
 
-The code repository contains a self-signed client certificate (“self-signed-client-cert.pfx ") that can be used to authenticate to the API.
-Another self-signed client certificate is added (“self-signed-client-cert-do-not-trust.pfx”) you can use if you do not have other client certificates available on your machine.
+The code repository contains a self-signed client certificate (“self-signed-for-local-test-trust.pfx") that can be used to authenticate to the API.
+Another self-signed client certificate is added (“self-signed-for-local-test-do-not-trust.pfx”) you can use if you do not have other client certificates available on your machine.
 Certificates added to the CurrentUser/My (Personal) store should be available for selection when accessing the API using your browser.
 
 The Azure App Service hosted Web API is configured to require client certificates. Azure App Service only offers limited options, but it is possible to exclude the OpenAPI spec’s URL, for example. Note that this is not required for registering your API in the Datahub.
