@@ -1,4 +1,10 @@
-﻿using System;
+﻿using Ilvo.DataHub.Samples.Provider.Filters;
+using Ilvo.DataHub.Samples.Provider.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,12 +12,6 @@ using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Ilvo.DataHub.Samples.Provider.Filters;
-using Ilvo.DataHub.Samples.Provider.Models;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace Ilvo.DataHub.Samples.Provider.Controllers
 {
@@ -39,7 +39,7 @@ namespace Ilvo.DataHub.Samples.Provider.Controllers
 
             var data = SimpleFarmData.GetSomeData();
 
-            //Create a http client with your provider client certificate certificate (production needs to be public CA-signed)
+            //Create an http client with your provider client certificate (production needs to be public CA-signed)
             using (var certificate = new X509Certificate2(
                 $"{_environment.ContentRootPath}\\Resources\\self-signed-for-authenticating-to-platform.pfx",
                 "UseAStrongPassword!"))
