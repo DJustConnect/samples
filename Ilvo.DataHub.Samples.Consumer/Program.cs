@@ -94,7 +94,7 @@ namespace Ilvo.DataHub.Samples.Consumer
             var result = new List<DarStatusSummary>();
             do
             {
-                var parameters = GetParameters(opts);
+                var parameters = GetParameters(opts, currentPage);
                 var url = QueryHelpers.AddQueryString("https://partnerapi.djustconnect.cegeka.com/api/DarStatus", parameters);
                 var response = await client.GetAsync(url);
                 var responseAsString = await response.Content.ReadAsStringAsync();
@@ -113,12 +113,12 @@ namespace Ilvo.DataHub.Samples.Consumer
 
                 result.AddRange(data);
                 Console.WriteLine($"Got data for page {currentPage}/{pages}");
-            } while (currentPage > pages && totalAmount > 0);
+            } while (currentPage < pages && totalAmount > 0);
 
             return result;
         }
 
-        private static Dictionary<string, string> GetParameters(StatusOptions opts)
+        private static Dictionary<string, string> GetParameters(StatusOptions opts, int currentPage)
         {
             var parameters = new Dictionary<string, string>();
 
@@ -131,6 +131,7 @@ namespace Ilvo.DataHub.Samples.Consumer
             if (!string.IsNullOrEmpty(opts.Kbo))
                 parameters.Add("FarmNumberFilter", opts.Kbo);
 
+            parameters.Add("PageNumber", (currentPage +1).ToString());
             return parameters;
         }
     }
