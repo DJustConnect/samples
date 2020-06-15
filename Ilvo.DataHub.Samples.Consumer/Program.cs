@@ -1,4 +1,6 @@
 ﻿using CommandLine;
+using Ilvo.DataHub.Samples.Consumer.Models;
+using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,9 +8,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using Ilvo.DataHub.Samples.Consumer.Models;
-using Newtonsoft.Json.Converters;
-using Microsoft.AspNetCore.WebUtilities;
 
 namespace Ilvo.DataHub.Samples.Consumer
 {
@@ -95,7 +94,7 @@ namespace Ilvo.DataHub.Samples.Consumer
             do
             {
                 var parameters = GetParameters(opts, currentPage);
-                var url = QueryHelpers.AddQueryString("https://partnerapi.djustconnect.cegeka.com/api/DarStatus", parameters);
+                var url = QueryHelpers.AddQueryString("https://partnerapi.djustconnect.be/api/DarStatus", parameters);
                 var response = await client.GetAsync(url);
                 var responseAsString = await response.Content.ReadAsStringAsync();
 

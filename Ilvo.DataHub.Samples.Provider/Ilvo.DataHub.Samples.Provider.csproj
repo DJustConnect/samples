@@ -11,13 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="sample.provider.pfx" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="sample.provider.pfx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Remove="Resources\self-signed-for-accessing-platform.pfx" />
+    <None Remove="Resources\self-signed-for-authenticating-to-platform.pfx" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +23,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\self-signed-for-authenticating-to-platform.pfx" />
   </ItemGroup>
 
 </Project>

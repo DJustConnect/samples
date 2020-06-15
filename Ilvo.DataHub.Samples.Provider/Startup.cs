@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.IO;
 using System.Reflection;
@@ -50,7 +49,7 @@ namespace Ilvo.DataHub.Samples.Provider
                     Title = "DJustConnect Sample API",
                     Description = "Sample of a Provider API, consumed by DJustConnect.",
                     Version = "v1"
-                    //TODO: Add more settings such as Terms and Conditions, Licensing details, etc.
+                    // Add more settings such as Terms and Conditions, Licensing details, etc.
                 });
 
                 // Set the comments path for the Swagger JSON and UI.

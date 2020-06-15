@@ -9,8 +9,8 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
     [AttributeUsage(AttributeTargets.Class)]
     public class RequireClientCertificateAttribute : Attribute, IAuthorizationFilter
     {
-        private const string SelfSignedCertThumbprint = "5297bc7b3c0bcb2905cf4158e50e2b65162edc1b";
-        private const string DjustConnectCertThumbprint = "a7dfeed59f1e1c44241a0f93a099eb0201a9e3d0";
+        private const string SelfSignedCertForLocalTestThumbprint = "78077955e858238c16c151db383c5f18684dca53"; // A local certificate, included under the "Resources" directory
+        private const string DjustConnectCertThumbprint = "a7dfeed59f1e1c44241a0f93a099eb0201a9e3d0"; // The default certificate DJustConnect will use to call your API
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -66,7 +66,7 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
 
         private static bool IsValid(X509Certificate2 certificate)
         {
-            return string.Equals(certificate.Thumbprint, SelfSignedCertThumbprint, StringComparison.OrdinalIgnoreCase)
+            return string.Equals(certificate.Thumbprint, SelfSignedCertForLocalTestThumbprint, StringComparison.OrdinalIgnoreCase)
                 || string.Equals(certificate.Thumbprint, DjustConnectCertThumbprint, StringComparison.OrdinalIgnoreCase);
 
         }

@@ -14,7 +14,7 @@ You can run it by opening CMD in the directory of the exe. Then run it with the 
 * -u the URL of the platform API that you want to call
 * -v the http method of the call
 * -c the path to the certificate file or the certificate filename used to call the platform
-* -f the certificate’s password
+* -p the certificate’s password
 * -s the subscription key that you received during registration
 
 #### Command
@@ -22,7 +22,7 @@ Ilvo.DataHub.Samples.Consumer.exe consume
 -u https://api-url
 -v "Get"
 -c "C:\Certificates\cert.pfx"
--f "certificate password"
+-p "certificate password"
 -s "c177c5740d434a9f8d7caef793dbd463"
 
 ## Provider Sample
@@ -41,8 +41,8 @@ Azure App Services provides hosting on a public CA-signed endpoint out of the bo
 In an actual production scenario you would create a CSR (Certificate Signing Request)
 and choose a public CA (Certificate Authority, e.g. GlobalSign, Thawte, Verisign, …) to get a public CA-signed certificate.
 
-The code repository contains a self-signed client certificate (“self-signed-client-cert.pfx ") that can be used to authenticate to the API.
-Another self-signed client certificate is added (“self-signed-client-cert-do-not-trust.pfx”) you can use if you do not have other client certificates available on your machine.
+The code repository contains a self-signed client certificate (“self-signed-for-local-test-trust.pfx") that can be used to authenticate to the API.
+Another self-signed client certificate is added (“self-signed-for-local-test-do-not-trust.pfx”) you can use if you do not have other client certificates available on your machine.
 Certificates added to the CurrentUser/My (Personal) store should be available for selection when accessing the API using your browser.
 
 The Azure App Service hosted Web API is configured to require client certificates. Azure App Service only offers limited options, but it is possible to exclude the OpenAPI spec’s URL, for example. Note that this is not required for registering your API in the Datahub.
