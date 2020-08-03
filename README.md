@@ -1,5 +1,5 @@
-# DJustConnect Samples
-In this repository you will find sample code for a consumer and provider for the DJustConnect platform.
+# DjustConnect Samples
+In this repository you will find sample code for a consumer and provider for the DjustConnect platform.
 
 ## Consumer Sample
 
@@ -58,10 +58,10 @@ Note that the DataHub Client Certificate will eventually be a public CA-signed o
 Subsequently, the thumbprint of the certificate is used to perform the authorization. You could also check the subject, compare it with a public certificate you load yourself, … there are many options to perform authorization.
 
 ### OAuth
-It is also possible to configure OAuth in DJustConnect. In that case before doing a call to your endpoint we will get a token from the configured OAuth provider and use it to connect with your endpoint.
+It is also possible to configure OAuth in DjustConnect. In that case before doing a call to your endpoint we will get a token from the configured OAuth provider and use it to connect with your endpoint.
 There you only need to do the validation of token as always.
 
-The configuration is done during your API registration in the DJustConnect portal and will require you to provide the following parameters of your OAuth provider:
+The configuration is done during your API registration in the DjustConnect portal and will require you to provide the following parameters of your OAuth provider:
 * Authorization endpoint (url)
 * Client Id
 * Client secret or key
@@ -112,10 +112,10 @@ If the resource URL from the request doesn’t match a resource in your system, 
 
 ### Event Types
 
-Besides API endpoints DJustConnect also supports push events or event types as we call them.
+Besides API endpoints DjustConnect also supports push events or event types as we call them.
 These are notifications that your API can send to the consumers.
 
-To do this you will need to configure your event types during your API registration in the DJustConnect portal.
+To do this you will need to configure your event types during your API registration in the DjustConnect portal.
 You will then receive [Azure event grid](https://docs.microsoft.com/en-us/azure/event-grid/) topic credentials which you can use to connect and send the event types to.
 
 In the PushNotificationController you can see an example of how to make the connection and send the event.
@@ -125,7 +125,7 @@ Note that the event message that is send to the topic needs the following metada
 * Id (unique identifier)
 * Data (the event or data)
 * EventTime (time the event is generated)
-* EventType (the resource id for this event. This id can be found in the DJustConnect portal in the event type details)
+* EventType (the resource id for this event. This id can be found in the DjustConnect portal in the event type details)
 * Subject (the farm identifier for to whom the data belongs like a kbo number)
 * Dataversion (version of the data that is send)
 
