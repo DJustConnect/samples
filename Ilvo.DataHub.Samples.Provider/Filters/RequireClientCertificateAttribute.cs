@@ -10,7 +10,7 @@ namespace Ilvo.DataHub.Samples.Provider.Filters
     public class RequireClientCertificateAttribute : Attribute, IAuthorizationFilter
     {
         private const string SelfSignedCertForLocalTestThumbprint = "78077955e858238c16c151db383c5f18684dca53"; // A local certificate, included under the "Resources" directory
-        private const string DjustConnectCertThumbprint = "a7dfeed59f1e1c44241a0f93a099eb0201a9e3d0"; // The default certificate DJustConnect will use to call your API
+        private const string DjustConnectCertThumbprint = "CEB6DA224A27FC0376464633261452050723F24C"; // The default certificate DJustConnect will use to call your API
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
